@@ -92,6 +92,7 @@ def cfg_yielder(model, binary):
 			n = d.get('filters', 1)
 			size = d.get('size', 1)
 			stride = d.get('stride', 1)
+			groups = d.get('groups',1)
 			pad = d.get('pad', 0)
 			padding = d.get('padding', 0)
 			if pad: padding = size // 2
