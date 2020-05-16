@@ -124,12 +124,13 @@ class conv_select_layer(Layer):
 
 class convolutional_layer(Layer):
     def setup(self, ksize, c, n, stride, 
-              pad, batch_norm, activation):
+              pad, batch_norm, activation,groups):
         self.batch_norm = bool(batch_norm)
         self.activation = activation
         self.stride = stride
         self.ksize = ksize
         self.pad = pad
+        self.groups = groups
         self.dnshape = [n, c, ksize, ksize] # darknet shape
         self.wshape = dict({
             'biases': [n], 
