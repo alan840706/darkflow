@@ -131,7 +131,7 @@ class convolutional_layer(Layer):
         self.ksize = ksize
         self.pad = pad
         self.groups = groups
-        self.dnshape = [n, c, ksize, ksize] # darknet shape
+        self.dnshape = [n, c/groups, ksize, ksize] # darknet shape
         self.wshape = dict({
             'biases': [n], 
             'kernel': [ksize, ksize, c/groups, n]
