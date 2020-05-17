@@ -131,12 +131,18 @@ class convolutional_layer(Layer):
         self.ksize = ksize
         self.pad = pad
         self.groups = groups
-        depth = n/groups
-        self.dnshape = [depth,c , ksize, ksize] # darknet shape
-        self.wshape = dict({
-            'biases': [n], 
-            'kernel': [ksize, ksize, c, depth]
-        })
+        if groups>1:
+            self.dnshape = [1,c , ksize, ksize] # darknet shape
+            self.wshape = dict({
+                'biases': [n], 
+                'kernel': [ksize, ksize, c, 1]
+            })
+        else:   
+            self.dnshape = [n,c , ksize, ksize] # darknet shape
+            self.wshape = dict({
+                'biases': [n], 
+                'kernel': [ksize, ksize, c, n]
+            })
         if self.batch_norm:
             self.wshape.update({
                 'moving_variance'  : [n], 
