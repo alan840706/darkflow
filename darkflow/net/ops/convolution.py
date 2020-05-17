@@ -67,6 +67,7 @@ class convolutional(BaseOp):
     def forward(self):
         pad = [[self.lay.pad, self.lay.pad]] * 2;
         temp = tf.pad(self.inp.out, [[0, 0]] + pad + [[0, 0]])
+        print(self.lay.w['kernel'])
         if self.lay.groups == 1:
             temp = tf.nn.conv2d(temp, self.lay.w['kernel'], padding = 'VALID', 
                 name = self.scope, strides = [1] + [self.lay.stride] * 2 + [1])
