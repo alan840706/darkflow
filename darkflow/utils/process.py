@@ -100,7 +100,7 @@ def cfg_yielder(model, binary):
 			batch_norm = d.get('batch_normalize', 0) or conv
 			yield ['convolutional', i, size, c, n, 
 				   stride, padding, batch_norm,
-				   activation]
+				   activation,groups]
 			if activation != 'linear': yield [activation, i]
 			w_ = (w + 2 * padding - size) // stride + 1
 			h_ = (h + 2 * padding - size) // stride + 1
