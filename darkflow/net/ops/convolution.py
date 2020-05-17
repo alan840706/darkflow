@@ -71,7 +71,7 @@ class convolutional(BaseOp):
             temp = tf.nn.conv2d(temp, self.lay.w['kernel'], padding = 'VALID', 
                 name = self.scope, strides = [1] + [self.lay.stride] * 2 + [1])
         else:
-            temp = tf.nn.depthwise_conv2d(temp, filter ,padding = 'VALID',
+            temp = tf.nn.depthwise_conv2d(temp, self.lay.w['kernel'] ,padding = 'VALID',
                 strides = [1] + [self.lay.stride] * 2 + [1])
         if self.lay.batch_norm: 
             temp = self.batchnorm(self.lay, temp)
