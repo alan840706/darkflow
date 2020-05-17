@@ -131,10 +131,11 @@ class convolutional_layer(Layer):
         self.ksize = ksize
         self.pad = pad
         self.groups = groups
-        self.dnshape = [n, c/groups, ksize, ksize] # darknet shape
+        depth = c/groups
+        self.dnshape = [n,depth , ksize, ksize] # darknet shape
         self.wshape = dict({
             'biases': [n], 
-            'kernel': [ksize, ksize, c/groups, n]
+            'kernel': [ksize, ksize, depth, n]
         })
         if self.batch_norm:
             self.wshape.update({
