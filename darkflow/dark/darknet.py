@@ -79,6 +79,7 @@ class Darknet(object):
         start = time.time()
 
         args = [self.src_bin, self.src_layers]
+        print(self.src_bin)
         wgts_loader = loader.create_loader(*args)
         for layer in self.layers: layer.load(wgts_loader)
         
