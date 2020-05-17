@@ -134,7 +134,7 @@ class convolutional_layer(Layer):
         self.dnshape = [n, c, ksize, ksize] # darknet shape
         self.wshape = dict({
             'biases': [n], 
-            'kernel': [ksize, ksize, c, n]
+            'kernel': [ksize, ksize, c/groups, n]
         })
         if self.batch_norm:
             self.wshape.update({
