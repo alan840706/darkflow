@@ -117,6 +117,7 @@ class weights_walker(object):
             major, minor, revision, seen = np.memmap(path,
                 shape = (), mode = 'r', offset = 0,
                 dtype = '({})i4,'.format(4))
+            print(major, minor, revision, seen)
             self.transpose = major > 1000 or minor > 1000
             self.offset = 20
 
