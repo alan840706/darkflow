@@ -27,6 +27,7 @@ def labels(meta, FLAGS):
         meta['labels'] = labels20
     else:
         file = FLAGS.labels
+        file = "darkflow/"+file 
         if model in coco_models:
             print("Model has a coco model name, loading coco labels.")
             file = os.path.join(FLAGS.config, coco_names)
