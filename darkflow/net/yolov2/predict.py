@@ -50,7 +50,10 @@ def postprocess(self, net_out, im, save = True):
 		if self.FLAGS.json:
 			resultsForJSON.append({"label": mess, "confidence": float('%.2f' % confidence), "topleft": {"x": left, "y": top}, "bottomright": {"x": right, "y": bot}})
 			continue
-
+		print("left",left)
+		print("top",top)
+		print("right",right)
+		print("bot",bot)
 		cv2.rectangle(imgcv,
 			(left, top), (right, bot),
 			colors[max_indx], thick)
