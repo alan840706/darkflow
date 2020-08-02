@@ -61,9 +61,10 @@ def postprocess(self, net_out, im, save = True):
 		if (count==0):
 			temp = np.array([context[1],context[2],context[3],context[4]])
 		else:
-			temp = np.append([temp],[buff])
-	count = count + 1
-	print("temp",len(temp))
+			temp = np.r_([temp],[buff])
+			print(len(temp))
+		count = count + 1
+	
 	resultsForJSON = []
 	for b in boxes:
 		boxResults = self.process_box(b, h, w, threshold)
