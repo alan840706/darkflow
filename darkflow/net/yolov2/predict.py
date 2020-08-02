@@ -47,7 +47,7 @@ def postprocess(self, CC,net_out, im, save = True):
 	temp = np.array([])
 	for line in f:
 		context = line.split(' ')
-		print(context[1],"   ",context[2],"   ",context[3],"   ",context[4])
+		#print(context[1],"   ",context[2],"   ",context[3],"   ",context[4])
 		x_plot = np.float64(context[1]) *320
 		y_plot = np.float64(context[2]) *224
 		w_long = (np.float64(context[3]) *320)/2
