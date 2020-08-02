@@ -38,7 +38,6 @@ def postprocess(self, CC,net_out, im, save = True):
 	answer_path ="content/result/" 
 	if type(im) is not np.ndarray:
 		imgcv = cv2.imread(im)
-		print("im:",im)
 		astr = im.split('/')
 		answer_path = answer_path+os.path.splitext(astr[2])[0]+".txt"
 	else: imgcv = im
@@ -90,7 +89,7 @@ def postprocess(self, CC,net_out, im, save = True):
 			colors[max_indx], thick)
 		cv2.putText(imgcv, mess, (left, top - 12),
 			0, 1e-3 * h, colors[max_indx],thick//3)
-		print("IOU:",max_IOU*100)
+		print("images:",im,"IOU:",max_IOU*100)
 		CC.count +=  max_IOU
 	
 	if not save: return imgcv
