@@ -61,7 +61,7 @@ def postprocess(self, net_out, im, save = True):
 		if (count==0):
 			temp = np.array([context[1],context[2],context[3],context[4]])
 		else:
-			temp = np.r_([temp],[buff])
+			temp = np.append([temp],[buff])
 			print(len(temp))
 		count = count + 1
 	
