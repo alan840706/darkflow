@@ -37,6 +37,7 @@ def postprocess(self, net_out, im, save = True):
 	labels = meta['labels']
 	if type(im) is not np.ndarray:
 		imgcv = cv2.imread(im)
+		print("im:",im)
 	else: imgcv = im
 	h, w, _ = imgcv.shape
 	
