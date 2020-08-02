@@ -39,7 +39,7 @@ def postprocess(self, net_out, im, save = True):
 	if type(im) is not np.ndarray:
 		imgcv = cv2.imread(im)
 		print("im:",im)
-		str = im.split('/')
+		astr = im.split('/')
 		answer_path = answer_path+os.path.splitext(str[2])[0]+".txt"
 	else: imgcv = im
 	h, w, _ = imgcv.shape
