@@ -83,6 +83,8 @@ def postprocess(self, CC,net_out, im, save = True):
 			area1=(bot-top)*(right-left)
 			area2=(t[2]-t[0])*(t[3]-t[1])
 			Union = area1+area2-area
+			
+			
 			IOU = area/Union
 			if (IOU > max_IOU):
 				max_IOU = IOU
@@ -92,7 +94,7 @@ def postprocess(self, CC,net_out, im, save = True):
 			colors[max_indx], thick)
 		cv2.putText(imgcv, mess, (left, top - 12),
 			0, 1e-3 * h, colors[max_indx],thick//3)
-		print("images:",im,"IOU:",max_IOU*100)
+		print("images:",im,"IOU:",max_IOU*100,"C:",area,"Union:",Union)
 		CC.count +=  max_IOU
 	
 	if not save: return imgcv
