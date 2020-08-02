@@ -78,16 +78,19 @@ def postprocess(self, CC,net_out, im, save = True):
 			resultsForJSON.append({"label": mess, "confidence": float('%.2f' % confidence), "topleft": {"x": left, "y": top}, "bottomright": {"x": right, "y": bot}})
 			continue
 		for t in temp:
-			print("t:",t)
+			#print("t:",t)
+			
 			area = (min(right,t[2])-max(left,t[0]))*(min(bot,t[3])-max(top,t[1]))
 			IOU = area/((bot-top)*(right-left)+(t[2]-t[0])*(t[3]-t[1])-area)
 			if (IOU > max_IOU):
 				max_IOU = IOU
+			
 		cv2.rectangle(imgcv,
 			(left, top), (right, bot),
 			colors[max_indx], thick)
 		cv2.putText(imgcv, mess, (left, top - 12),
 			0, 1e-3 * h, colors[max_indx],thick//3)
+		print("IOU:",max_IOU*100)
 		CC.count +=  max_IOU
 	
 	if not save: return imgcv
