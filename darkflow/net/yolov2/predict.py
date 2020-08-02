@@ -49,13 +49,13 @@ def postprocess(self, CC,net_out, im, save = True):
 		context = line.split(' ')
 		#print(context[1],"   ",context[2],"   ",context[3],"   ",context[4])
 		x_plot = np.float64(context[1]) *320
-		y_plot = np.float64(context[2]) *224
+		y_plot = np.float64(context[2]) *240
 		w_long = (np.float64(context[3]) *320)/2
-		h_long = (np.float64(context[4]) *224)/2
-		gt_left = round(x_plot-w_long)
-		gt_top = round(y_plot-h_long)
-		gt_right = round(x_plot+w_long)
-		gt_bot = round(y_plot+h_long)
+		h_long = (np.float64(context[4]) *240)/2
+		gt_left = (x_plot-w_long)
+		gt_top = round((y_plot-h_long)*(224/240))
+		gt_right = (x_plot+w_long)
+		gt_bot = round((y_plot+h_long)*(224/240))
 		buff = [[gt_left,gt_top,gt_right,gt_bot]]
 		
 		if (count==0):
