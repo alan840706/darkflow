@@ -59,29 +59,36 @@ def postprocess(self, net_out, im, save = True):
 		buff = [[gt_left,gt_top,gt_right,gt_bot]]
 		
 		if (count==0):
-			temp = np.array([[context[1],context[2],context[3],context[4]]])
+			temp = np.array([[gt_left,gt_top,gt_right,gt_bot]])
 		else:
 			temp = np.row_stack((temp,buff))
 			print(len(temp))
 		count = count + 1
 	
 	resultsForJSON = []
+	sum_IOU = 0
 	for b in boxes:
 		boxResults = self.process_box(b, h, w, threshold)
 		if boxResults is None:
 			continue
 		left, right, top, bot, mess, max_indx, confidence = boxResults
 		thick = int((h + w) // 300)
+		max_IOU = 0
 		if self.FLAGS.json:
 			resultsForJSON.append({"label": mess, "confidence": float('%.2f' % confidence), "topleft": {"x": left, "y": top}, "bottomright": {"x": right, "y": bot}})
 			continue
-		
+		for t in temp:
+			area = [min(right,t[2])-max(left,t[0])]*[min(bot,t[3])-max(top,t[1])]
+			IOU = area/[(bot-top)*(right-left)+(t[2]-t[0])*(t[3]-t[1])-area]
+			if (IOU > max_IOU):
+				max_IOU = IOU
 		cv2.rectangle(imgcv,
 			(left, top), (right, bot),
 			colors[max_indx], thick)
 		cv2.putText(imgcv, mess, (left, top - 12),
 			0, 1e-3 * h, colors[max_indx],thick//3)
-
+		sum_IOU =  sum_IOU + max_IOU
+	print(sum_IOU)
 	if not save: return imgcv
 
 	outfolder = os.path.join(self.FLAGS.imgdir, 'out')
