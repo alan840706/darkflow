@@ -56,6 +56,7 @@ def postprocess(self, CC,net_out, im, save = True):
 		gt_top = round((y_plot-h_long)*0.9333333333333)
 		gt_right = (x_plot+w_long)
 		gt_bot = round((y_plot+h_long)*0.9333333333333)
+		print("before:",round(y_plot+h_long),"after:",gt_bot)
 		buff = [[gt_left,gt_top,gt_right,gt_bot]]
 		
 		if (count==0):
