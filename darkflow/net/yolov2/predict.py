@@ -56,8 +56,8 @@ def postprocess(self, net_out, im, save = True):
 		gt_top = y_plot-h_long
 		gt_right = x_plot+w_long
 		gt_bot = y_plot+h_long
-		buff = [gt_left,gt_top,gt_right,gt_bot]
-		temp = np.append(temp,buff,axis=1)
+		buff = [[gt_left,gt_top,gt_right,gt_bot]]
+		temp = np.append(temp,buff,axis=0)
 	print("temp",len(temp))
 	resultsForJSON = []
 	for b in boxes:
