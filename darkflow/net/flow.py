@@ -142,7 +142,7 @@ def predict(self):
             self.framework.postprocess(
                prediction, os.path.join(inp_path, this_batch[i])))(*p),
             enumerate(out))
-        total_IOU = self.framework.postprocess(prediction, os.path.join(inp_path, this_batch[i])+ total_IOU
+        total_IOU = self.framework.postprocess(prediction, os.path.join(inp_path, this_batch[i]))+ total_IOU
         stop = time.time(); last = stop - start
         
         # Timing
