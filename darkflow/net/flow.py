@@ -5,6 +5,10 @@ import tensorflow as tf
 import pickle
 from multiprocessing.pool import ThreadPool
 
+class Count:
+    def __init__(self, count=0):
+        self.count = count
+
 train_stats = (
     'Training statistics: \n'
     '\tLearning rate : {}\n'
@@ -115,7 +119,8 @@ def predict(self):
 
     # predict in batches
     n_batch = int(math.ceil(len(all_inps) / batch))
-    total_IOU = 0
+    CC = Count()
+    #total_IOU = 0
     for j in range(n_batch):
         from_idx = j * batch
         to_idx = min(from_idx + batch, len(all_inps))
@@ -138,16 +143,17 @@ def predict(self):
         # Post processing
         self.say('Post processing {} inputs ...'.format(len(inp_feed)))
         start = time.time()
-        temp_count = np.array(0.0,len(this_batch))
         pool.map(lambda p: (lambda i, prediction:
-            temp_count[i]=self.framework.postprocess(
+            self.framework.postprocess(CC,
                prediction, os.path.join(inp_path, this_batch[i])))(*p),
             enumerate(out))
-        #total_IOU = self.framework.postprocess(prediction, os.path.join(inp_path, this_batch[i]))+ total_IOU
+        
+	#for i in this_batch:
+		
         stop = time.time(); last = stop - start
-        for ii in temp_count:
-		total_IOU = total_IOU+ii
+        
         # Timing
         self.say('Total time = {}s / {} inps = {} ips'.format(
             last, len(inp_feed), len(inp_feed) / last))
-    print("total_IOU:",total_IOU)
+    print("total_IOU:",CC)
+
