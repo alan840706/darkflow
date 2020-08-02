@@ -44,6 +44,7 @@ def postprocess(self, net_out, im, save = True):
 	else: imgcv = im
 	h, w, _ = imgcv.shape
 	f = open(answer_path)
+	print(f)
 	for i in range(len(f)):
 		context = f[i].split(' ')
 		print(context[1],"   ",context[2],"   ",context[3],"   ",context[4])
