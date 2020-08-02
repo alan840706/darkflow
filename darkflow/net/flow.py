@@ -138,13 +138,15 @@ def predict(self):
         # Post processing
         self.say('Post processing {} inputs ...'.format(len(inp_feed)))
         start = time.time()
+	temp_count = np.array(0.0,len(this_batch))
         pool.map(lambda p: (lambda i, prediction:
-            self.framework.postprocess(
+            temp_count[i]=self.framework.postprocess(
                prediction, os.path.join(inp_path, this_batch[i])))(*p),
             enumerate(out))
-        total_IOU = self.framework.postprocess(prediction, os.path.join(inp_path, this_batch[i]))+ total_IOU
+        #total_IOU = self.framework.postprocess(prediction, os.path.join(inp_path, this_batch[i]))+ total_IOU
         stop = time.time(); last = stop - start
-        
+        for ii in temp_count:
+		total_IOU = total_IOU+ii
         # Timing
         self.say('Total time = {}s / {} inps = {} ips'.format(
             last, len(inp_feed), len(inp_feed) / last))
