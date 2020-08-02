@@ -46,6 +46,7 @@ def postprocess(self, net_out, im, save = True):
 	f = open(answer_path)
 	temp = np.array([])
 	for line in f:
+		print(line[1],"   ",line[2],"   ",line[3],"   ",line[4])
 		x_plot = np.float64(line[1]) *320
 		y_plot = np.float64(line[2]) *224
 		w_long = (np.float64(line[3]) *320)/2
