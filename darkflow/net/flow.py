@@ -156,4 +156,5 @@ def predict(self):
         self.say('Total time = {}s / {} inps = {} ips'.format(
             last, len(inp_feed), len(inp_feed) / last))
     print("total_IOU:",CC.count)
+    print("total_images:",len(all_inps))
 
