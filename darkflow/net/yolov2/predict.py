@@ -80,7 +80,10 @@ def postprocess(self, CC,net_out, im, save = True):
 			#print("t:",t)
 			
 			area = (min(right,t[2])-max(left,t[0]))*(min(bot,t[3])-max(top,t[1]))
-			IOU = area/((bot-top)*(right-left)+(t[2]-t[0])*(t[3]-t[1])-area)
+			area1=(bot-top)*(right-left)
+			area2=(t[2]-t[0])*(t[3]-t[1])
+			Union = area1+area2-area
+			IOU = area/Union
 			if (IOU > max_IOU):
 				max_IOU = IOU
 			
