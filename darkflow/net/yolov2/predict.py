@@ -35,12 +35,27 @@ def postprocess(self, net_out, im, save = True):
 	threshold = meta['thresh']
 	colors = meta['colors']
 	labels = meta['labels']
+	answer_path ="content/result/" 
 	if type(im) is not np.ndarray:
 		imgcv = cv2.imread(im)
 		print("im:",im)
+		answer_path = answer_path+os.path.splitext(im)[0]+".txt"
 	else: imgcv = im
 	h, w, _ = imgcv.shape
-	
+	f = open(answer_path)
+	temp = np.array([])
+	for line in f:
+        	x_plot = line[1] *320
+		y_plot = line[2] *224
+		w_long = (line[3] *320)/2
+		h_long = (line[4] *224)/2
+		gt_left = x_plot-w_long
+		gt_top = y_plot-h_long
+		gt_right = x_plot+w_long
+		gt_bot = y_plot+h_long
+		buff = [gt_left,gt_top,gt_right,gt_bot]
+		temp = np.append(temp,buff)
+	print("temp",temp)
 	resultsForJSON = []
 	for b in boxes:
 		boxResults = self.process_box(b, h, w, threshold)
@@ -51,10 +66,7 @@ def postprocess(self, net_out, im, save = True):
 		if self.FLAGS.json:
 			resultsForJSON.append({"label": mess, "confidence": float('%.2f' % confidence), "topleft": {"x": left, "y": top}, "bottomright": {"x": right, "y": bot}})
 			continue
-		print("left",left)
-		print("top",top)
-		print("right",right)
-		print("bot",bot)
+		
 		cv2.rectangle(imgcv,
 			(left, top), (right, bot),
 			colors[max_indx], thick)
