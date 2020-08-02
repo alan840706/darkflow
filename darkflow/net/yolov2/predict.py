@@ -44,9 +44,9 @@ def postprocess(self, net_out, im, save = True):
 	else: imgcv = im
 	h, w, _ = imgcv.shape
 	f = open(answer_path)
-	print(f)
-	for i in range(len(f)):
-		context = f[i].split(' ')
+	count = 0
+	for line in f:
+		context = line.split(' ')
 		print(context[1],"   ",context[2],"   ",context[3],"   ",context[4])
 		x_plot = np.float64(context[1]) *320
 		y_plot = np.float64(context[2]) *224
@@ -58,10 +58,11 @@ def postprocess(self, net_out, im, save = True):
 		gt_bot = y_plot+h_long
 		buff = [gt_left,gt_top,gt_right,gt_bot]
 		
-		if (i==0):
+		if (count==0):
 			temp = np.array([context[1],context[2],context[3],context[4]])
 		else:
 			temp = np.append(temp,buff)
+		count = count + 1
 	print("temp",len(temp))
 	resultsForJSON = []
 	for b in boxes:
