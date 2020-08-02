@@ -45,6 +45,7 @@ def postprocess(self, net_out, im, save = True):
 	h, w, _ = imgcv.shape
 	f = open(answer_path)
 	count = 0
+	temp = np.array([])
 	for line in f:
 		context = line.split(' ')
 		print(context[1],"   ",context[2],"   ",context[3],"   ",context[4])
@@ -63,7 +64,7 @@ def postprocess(self, net_out, im, save = True):
 		else:
 			temp = np.row_stack((temp,buff))
 		count = count + 1
-	print("temp:",temp)
+	
 	resultsForJSON = []
 	sum_IOU = 0
 	for b in boxes:
@@ -88,7 +89,7 @@ def postprocess(self, net_out, im, save = True):
 		cv2.putText(imgcv, mess, (left, top - 12),
 			0, 1e-3 * h, colors[max_indx],thick//3)
 		sum_IOU =  sum_IOU + max_IOU
-	print(sum_IOU)
+	print("sum_IOU:",sum_IOU)
 	if not save: return imgcv
 
 	outfolder = os.path.join(self.FLAGS.imgdir, 'out')
