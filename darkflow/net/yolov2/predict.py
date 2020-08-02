@@ -46,10 +46,10 @@ def postprocess(self, net_out, im, save = True):
 	f = open(answer_path)
 	temp = np.array([])
 	for line in f:
-		x_plot = line[1] *320
-		y_plot = line[2] *224
-		w_long = (line[3] *320)/2
-		h_long = (line[4] *224)/2
+		x_plot = double(line[1]) *320
+		y_plot = double(line[2]) *224
+		w_long = (double(line[3]) *320)/2
+		h_long = (double(line[4]) *224)/2
 		gt_left = x_plot-w_long
 		gt_top = y_plot-h_long
 		gt_right = x_plot+w_long
