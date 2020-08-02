@@ -52,10 +52,10 @@ def postprocess(self, net_out, im, save = True):
 		y_plot = np.float64(context[2]) *224
 		w_long = (np.float64(context[3]) *320)/2
 		h_long = (np.float64(context[4]) *224)/2
-		gt_left = x_plot-w_long
-		gt_top = y_plot-h_long
-		gt_right = x_plot+w_long
-		gt_bot = y_plot+h_long
+		gt_left = round(x_plot-w_long)
+		gt_top = round(y_plot-h_long)
+		gt_right = round(x_plot+w_long)
+		gt_bot = round(y_plot+h_long)
 		buff = [[gt_left,gt_top,gt_right,gt_bot]]
 		
 		if (count==0):
