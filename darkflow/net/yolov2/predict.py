@@ -24,7 +24,7 @@ def findboxes(self, net_out):
 	boxes=box_constructor(meta,net_out)
 	return boxes
 
-def postprocess(self, net_out, im, save = True):
+def postprocess(self, CC,net_out, im, save = True):
 	"""
 	Takes net output, draw net_out, save to disk
 	"""
@@ -88,8 +88,8 @@ def postprocess(self, net_out, im, save = True):
 			colors[max_indx], thick)
 		cv2.putText(imgcv, mess, (left, top - 12),
 			0, 1e-3 * h, colors[max_indx],thick//3)
-		sum_IOU =  sum_IOU + max_IOU
-	print("sum_IOU:",sum_IOU)
+		CC =  CC + max_IOU
+	
 	if not save: return imgcv
 
 	outfolder = os.path.join(self.FLAGS.imgdir, 'out')
@@ -102,4 +102,4 @@ def postprocess(self, net_out, im, save = True):
 		return
 
 	cv2.imwrite(img_name, imgcv)
-	return sum_IOU
+	
