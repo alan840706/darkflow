@@ -155,5 +155,5 @@ def predict(self):
         # Timing
         self.say('Total time = {}s / {} inps = {} ips'.format(
             last, len(inp_feed), len(inp_feed) / last))
-    print("total_IOU:",CC)
+    print("total_IOU:",CC.count)
 
