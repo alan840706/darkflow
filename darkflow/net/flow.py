@@ -138,7 +138,7 @@ def predict(self):
         # Post processing
         self.say('Post processing {} inputs ...'.format(len(inp_feed)))
         start = time.time()
-	temp_count = np.array(0.0,len(this_batch))
+        temp_count = np.array(0.0,len(this_batch))
         pool.map(lambda p: (lambda i, prediction:
             temp_count[i]=self.framework.postprocess(
                prediction, os.path.join(inp_path, this_batch[i])))(*p),
