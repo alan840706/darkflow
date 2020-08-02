@@ -78,7 +78,7 @@ def postprocess(self, net_out, im, save = True):
 			continue
 		for t in temp:
 			print("t:",t)
-			area = [min(right,t[2])-max(left,t[0])]*[min(bot,t[3])-max(top,t[1])]
+			area = [int(min(right,t[2])-max(left,t[0]))]*[int(min(bot,t[3])-max(top,t[1]))]
 			IOU = area/[(bot-top)*(right-left)+(t[2]-t[0])*(t[3]-t[1])-area]
 			if (IOU > max_IOU):
 				max_IOU = IOU
