@@ -115,6 +115,7 @@ def predict(self):
 
     # predict in batches
     n_batch = int(math.ceil(len(all_inps) / batch))
+    total_IOU = 0
     for j in range(n_batch):
         from_idx = j * batch
         to_idx = min(from_idx + batch, len(all_inps))
@@ -141,8 +142,12 @@ def predict(self):
             self.framework.postprocess(
                prediction, os.path.join(inp_path, this_batch[i])))(*p),
             enumerate(out))
+	total_IOU = self.framework.postprocess(
+               prediction, os.path.join(inp_path, this_batch[i])))(*p),
+            enumerate(out)) + total_IOU
         stop = time.time(); last = stop - start
-
+        
         # Timing
         self.say('Total time = {}s / {} inps = {} ips'.format(
             last, len(inp_feed), len(inp_feed) / last))
+    print("total_IOU:",total_IOU)
