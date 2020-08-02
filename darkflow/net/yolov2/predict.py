@@ -56,12 +56,12 @@ def postprocess(self, net_out, im, save = True):
 		gt_top = y_plot-h_long
 		gt_right = x_plot+w_long
 		gt_bot = y_plot+h_long
-		buff = [gt_left,gt_top,gt_right,gt_bot]
+		buff = [[gt_left,gt_top,gt_right,gt_bot]]
 		
 		if (count==0):
-			temp = np.array([context[1],context[2],context[3],context[4]])
+			temp = np.array([[context[1],context[2],context[3],context[4]]])
 		else:
-			temp = np.append([temp],[buff])
+			temp = np.row_stack((temp,buff))
 			print(len(temp))
 		count = count + 1
 	
