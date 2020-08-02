@@ -40,7 +40,7 @@ def postprocess(self, net_out, im, save = True):
 		imgcv = cv2.imread(im)
 		print("im:",im)
 		astr = im.split('/')
-		answer_path = answer_path+os.path.splitext(str[2])[0]+".txt"
+		answer_path = answer_path+os.path.splitext(astr[2])[0]+".txt"
 	else: imgcv = im
 	h, w, _ = imgcv.shape
 	f = open(answer_path)
