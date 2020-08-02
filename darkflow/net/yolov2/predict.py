@@ -101,3 +101,4 @@ def postprocess(self, net_out, im, save = True):
 		return
 
 	cv2.imwrite(img_name, imgcv)
+	return sum_IOU
