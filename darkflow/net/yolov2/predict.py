@@ -88,7 +88,7 @@ def postprocess(self, CC,net_out, im, save = True):
 			colors[max_indx], thick)
 		cv2.putText(imgcv, mess, (left, top - 12),
 			0, 1e-3 * h, colors[max_indx],thick//3)
-		CC =  CC + max_IOU
+		CC.count +=  max_IOU
 	
 	if not save: return imgcv
 
