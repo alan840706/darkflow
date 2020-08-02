@@ -62,9 +62,8 @@ def postprocess(self, net_out, im, save = True):
 			temp = np.array([[gt_left,gt_top,gt_right,gt_bot]])
 		else:
 			temp = np.row_stack((temp,buff))
-			print("temp:",temp)
 		count = count + 1
-	
+	print("temp:",temp)
 	resultsForJSON = []
 	sum_IOU = 0
 	for b in boxes:
