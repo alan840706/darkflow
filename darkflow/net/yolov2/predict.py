@@ -62,7 +62,7 @@ def postprocess(self, net_out, im, save = True):
 			temp = np.array([[gt_left,gt_top,gt_right,gt_bot]])
 		else:
 			temp = np.row_stack((temp,buff))
-			print(len(temp))
+			print("temp:",temp)
 		count = count + 1
 	
 	resultsForJSON = []
