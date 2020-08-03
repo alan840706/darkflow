@@ -64,8 +64,15 @@ def postprocess(self, CC,net_out, im, save = True):
 			temp = np.row_stack((temp,buff))
 		count = count + 1
 	
+	try:
+		path = "PREDICT_RESULT"
+		os.mkdir(path);
+	except:
+		print("It's ok")
 	resultsForJSON = []
 	sum_IOU = 0
+	SFILE = open("PREDICT_RESULT/"+os.path.splitext(astr[2])[0]+".txt",w)
+	
 	for b in boxes:
 		boxResults = self.process_box(b, h, w, threshold)
 		if boxResults is None:
@@ -88,7 +95,7 @@ def postprocess(self, CC,net_out, im, save = True):
 			IOU = area/Union
 			if (IOU > max_IOU):
 				max_IOU = IOU
-			
+		SFILE.writelines([left,top,right,bot])	
 		cv2.rectangle(imgcv,
 			(left, top), (right, bot),
 			colors[max_indx], thick)
@@ -96,7 +103,7 @@ def postprocess(self, CC,net_out, im, save = True):
 			0, 1e-3 * h, colors[max_indx],thick//3)
 		print("images:",im,"IOU:",max_IOU*100,"gt_l:",gt_left,"gt_r:",gt_right,"gt_t:",gt_top,"gt_b:",gt_bot,"l:",left,"r:",right,"t:",top,"b:",bot,"C:",area,"Union:",Union,"before:",round(y_plot+h_long),"after:",gt_bot)
 		CC.count +=  max_IOU
-	
+	SFILE.close()
 	if not save: return imgcv
 
 	outfolder = os.path.join(self.FLAGS.imgdir, 'out')
