@@ -71,7 +71,7 @@ def postprocess(self, CC,net_out, im, save = True):
 		print("It's ok")
 	resultsForJSON = []
 	sum_IOU = 0
-	SFILE = open("PREDICT_RESULT/"+os.path.splitext(astr[2])[0]+".txt",w+)
+	SFILE = open("PREDICT_RESULT/"+os.path.splitext(astr[2])[0]+".txt",'w')
 	
 	for b in boxes:
 		boxResults = self.process_box(b, h, w, threshold)
