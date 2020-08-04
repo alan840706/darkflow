@@ -95,7 +95,7 @@ def postprocess(self, CC,net_out, im, save = True):
 			IOU = area/Union
 			if (IOU > max_IOU):
 				max_IOU = IOU
-		SFILE.writelines([left,top,right,bot])	
+		SFILE.writelines([str(left),str(top),str(right),str(bot)])	
 		cv2.rectangle(imgcv,
 			(left, top), (right, bot),
 			colors[max_indx], thick)
