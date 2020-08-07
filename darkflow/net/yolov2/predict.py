@@ -73,13 +73,14 @@ def postprocess(self, CC,net_out, im, save = True):
 	sum_IOU = 0
 	SFILE = open("PREDICT_RESULT/"+os.path.splitext(astr[2])[0]+".txt",'w')
 	for t in temp:
+		max_IOU = 0
 		for b in boxes:
 			boxResults = self.process_box(b, h, w, threshold)
 			if boxResults is None:
 				continue
 			left, right, top, bot, mess, max_indx, confidence = boxResults
 			thick = int((h + w) // 300)
-			max_IOU = 0
+			
 			if self.FLAGS.json:
 				resultsForJSON.append({"label": mess, "confidence": float('%.2f' % confidence), "topleft": {"x": left, "y": top}, "bottomright": {"x": right, "y": bot}})
 				continue
@@ -98,8 +99,9 @@ def postprocess(self, CC,net_out, im, save = True):
 				colors[max_indx], thick)
 			cv2.putText(imgcv, mess, (left, top - 12),
 				0, 1e-3 * h, colors[max_indx],thick//3)
-			print("images:",im,"IOU:",max_IOU*100,"gt_l:",gt_left,"gt_r:",gt_right,"gt_t:",gt_top,"gt_b:",gt_bot,"l:",left,"r:",right,"t:",top,"b:",bot,"C:",area,"Union:",Union,"before:",round(y_plot+h_long),"after:",gt_bot)
-	CC.count +=  max_IOU		
+			
+		print("images:",im,"IOU:",max_IOU*100,"gt_l:",gt_left,"gt_r:",gt_right,"gt_t:",gt_top,"gt_b:",gt_bot,"l:",left,"r:",right,"t:",top,"b:",bot,"C:",area,"Union:",Union,"before:",round(y_plot+h_long),"after:",gt_bot)
+		CC.count +=  max_IOU		
 	SFILE.close()
 	if not save: return imgcv
 
