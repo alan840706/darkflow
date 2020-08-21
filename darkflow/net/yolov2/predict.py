@@ -66,8 +66,10 @@ def postprocess(self, CC,net_out, im, save = True):
 	
 	
 	path = "PREDICT_RESULT"
-	if not os.path.isdir(path):
+	try:
 		os.mkdir(path)
+	except:
+		imustdo=0
 	resultsForJSON = []
 	sum_IOU = 0
 	SFILE = open("PREDICT_RESULT/"+os.path.splitext(astr[2])[0]+".txt",'w')
