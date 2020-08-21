@@ -64,11 +64,10 @@ def postprocess(self, CC,net_out, im, save = True):
 			temp = np.row_stack((temp,buff))
 		count = count + 1
 	
-	try:
-		path = "PREDICT_RESULT"
-		os.mkdir(path);
-	except:
-		print("It's ok")
+	
+	path = "PREDICT_RESULT"
+	if not os.path.isdir(path):
+		os.mkdir(path)
 	resultsForJSON = []
 	sum_IOU = 0
 	SFILE = open("PREDICT_RESULT/"+os.path.splitext(astr[2])[0]+".txt",'w')
