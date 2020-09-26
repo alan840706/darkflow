@@ -3,6 +3,15 @@ from .baseop import BaseOp
 import tensorflow as tf
 from distutils.version import StrictVersion
 
+class relu(BaseOp):
+	def forward(self):
+		self.out = tf.nn.relu(
+			self.inp.out,
+	        name = self.scope
+	    )
+	def speak(self):
+		return 'relu'
+
 class route(BaseOp):
 	def forward(self):
 		routes = self.lay.routes
