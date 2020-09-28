@@ -150,7 +150,7 @@ def predict(self):
         import cv2
         img = cv2.imread('/images/0-(1000).jpg')
         input_data = np.array(img, dtype=np.float32)
-
+        print(input_details[0]['index'])
         interpreter.set_tensor(input_details[0]['index'], [input_data])
 
         interpreter.invoke()
