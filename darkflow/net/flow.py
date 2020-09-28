@@ -136,31 +136,31 @@ def predict(self):
         self.say('Forwarding {} inputs ...'.format(len(inp_feed)))
         start = time.time()
         out = self.sess.run(self.out, feed_dict)
-	import cv2
+        import cv2
 
 	# Load the TFLite model and allocate tensors.
-	interpreter = tf.contrib.lite.Interpreter(model_path="yolov2-tier_relu.tflite")
-	interpreter.allocate_tensors()
+        interpreter = tf.contrib.lite.Interpreter(model_path="yolov2-tier_relu.tflite")
+        interpreter.allocate_tensors()
 
 	# Get input and output tensors.
-	input_details = interpreter.get_input_details()
-	output_details = interpreter.get_output_details()
+        input_details = interpreter.get_input_details()
+        output_details = interpreter.get_output_details()
 
 	# Test the model on random input data.
-	input_shape = input_details[0]['shape']
+        input_shape = input_details[0]['shape']
 
 
-	img = cv2.imread('/images/0-(1000).jpg')
-	input_data = np.array(img, dtype=np.float32)
+        img = cv2.imread('/images/0-(1000).jpg')
+        input_data = np.array(img, dtype=np.float32)
 
-	interpreter.set_tensor(input_details[0]['index'], [input_data])
+        interpreter.set_tensor(input_details[0]['index'], [input_data])
 
-	interpreter.invoke()
+        interpreter.invoke()
 
 	# The function `get_tensor()` returns a copy of the tensor data.
 	# Use `tensor()` in order to get a pointer to the tensor.
-	output_data = interpreter.get_tensor(output_details[0]['index'])
-	print(output_data)
+        output_data = interpreter.get_tensor(output_details[0]['index'])
+        print(output_data)
         out = output_data
         stop = time.time(); last = stop - start
         self.say('Total time = {}s / {} inps = {} ips'.format(
