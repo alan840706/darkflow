@@ -127,6 +127,7 @@ def predict(self):
 
         # collect images input in the batch
         this_batch = all_inps[from_idx:to_idx]
+        print(this_batch)
         inp_feed = pool.map(lambda inp: (
             np.expand_dims(self.framework.preprocess(
                 os.path.join(inp_path, inp)), 0)), this_batch)
