@@ -94,10 +94,9 @@ class TFNet(object):
 		self.inp = tf.get_default_graph().get_tensor_by_name('input:0')
 		self.feed = dict() # other placeholders
 		self.out = tf.get_default_graph().get_tensor_by_name('output:0')
-		
 		self.setup_meta_ops()
 		converter = tf.contrib.lite.TFLiteConverter.from_frozen_graph(
-		"/built_graph/yolov2-tier_relu.pb", input_arrays='input', output_arrays='output')
+		"/built_graph/yolov2-tier_relu.pb", input_arrays=['input'], output_arrays=['output'])
 		tflite_model = converter.convert()
 		open("./", "wb").write(tflite_model)
 	def build_forward(self):
