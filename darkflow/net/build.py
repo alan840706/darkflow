@@ -96,7 +96,11 @@ class TFNet(object):
 		self.out = tf.get_default_graph().get_tensor_by_name('output:0')
 		
 		self.setup_meta_ops()
-	
+		converter = tf.contrib.lite.TFLiteConverter.from_frozen_graph(
+		"/built_graph/yolov2-tier_relu.pb", "input", "output", 
+		input_shapes=(1,224,320,3))
+		tflite_model = converter.convert()
+		open("./", "wb").write(tflite_model)
 	def build_forward(self):
 		verbalise = self.FLAGS.verbalise
 
