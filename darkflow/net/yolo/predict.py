@@ -71,8 +71,9 @@ def preprocess(self, im, allobj = None):
 			obj[1] = dims[0] - obj[3]
 			obj[3] = dims[0] - obj_1_
 		im = imcv2_recolor(im)
-
+       
 	im = self.resize_input(im)
+	im = np.array(im, dtype=np.float32)
 	if allobj is None: return im
 	return im#, np.array(im) # for unit testing
 
