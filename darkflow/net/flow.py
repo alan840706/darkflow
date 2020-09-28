@@ -160,8 +160,7 @@ def predict(self):
 	# The function `get_tensor()` returns a copy of the tensor data.
 	# Use `tensor()` in order to get a pointer to the tensor.
         output_data = interpreter.get_tensor(output_details[0]['index'])
-        print(output_data)
-        out = output_data
+        print(out)
         stop = time.time(); last = stop - start
         self.say('Total time = {}s / {} inps = {} ips'.format(
             last, len(inp_feed), len(inp_feed) / last))
