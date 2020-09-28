@@ -58,7 +58,9 @@ def preprocess(self, im, allobj = None):
 	if type(im) is not np.ndarray:
 		im = cv2.imread(im)
 
-	if allobj is not None: # in training mode
+	if allobj is not None:
+		# in training mode
+		print("are you kidding?")
 		result = imcv2_affine_trans(im)
 		im, dims, trans_param = result
 		scale, offs, flip = trans_param
