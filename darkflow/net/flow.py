@@ -137,7 +137,7 @@ def predict(self):
         start = time.time()
         out = self.sess.run(self.out, feed_dict)
 	# Load the TFLite model and allocate tensors.
-        interpreter = tf.contrib.lite.TFLiteConverter(model_path="yolov2-tier_relu.tflite")
+        interpreter = tf.contrib.lite.Interpreter(model_path="yolov2-tier_relu.tflite")
         interpreter.allocate_tensors()
 
 	# Get input and output tensors.
