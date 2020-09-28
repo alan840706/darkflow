@@ -98,7 +98,7 @@ class TFNet(object):
 		converter = tf.contrib.lite.TFLiteConverter.from_frozen_graph(
 		"/built_graph/yolov2-tier_relu.pb", input_arrays=['input'], output_arrays=['output'])
 		tflite_model = converter.convert()
-		open("./", "wb").write(tflite_model)
+		open("yolov2-tier_relu.tflite", "wb").write(tflite_model)
 	def build_forward(self):
 		verbalise = self.FLAGS.verbalise
 
