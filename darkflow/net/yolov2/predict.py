@@ -49,9 +49,9 @@ def postprocess(self, CC,net_out, im, save = True):
 		context = line.split(' ')
 		#print(context[1],"   ",context[2],"   ",context[3],"   ",context[4])
 		x_plot = np.float64(context[1]) *320
-		y_plot = np.float64(context[2]) *240
+		y_plot = np.float64(context[2]) *224
 		w_long = (np.float64(context[3]) *320)/2
-		h_long = (np.float64(context[4]) *240)/2
+		h_long = (np.float64(context[4]) *224)/2
 		gt_left = (x_plot-w_long)
 		gt_top = (y_plot-h_long)
 		gt_right = (x_plot+w_long)
