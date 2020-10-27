@@ -101,7 +101,7 @@ def postprocess(self, CC,net_out, im, save = True):
 			cv2.putText(imgcv, mess, (left, top - 12),
 				0, 1e-3 * h, colors[max_indx],thick//3)
 			
-		#print("images:",im,"IOU:",max_IOU*100,"gt_l:",gt_left,"gt_r:",gt_right,"gt_t:",gt_top,"gt_b:",gt_bot,"l:",left,"r:",right,"t:",top,"b:",bot,"C:",area,"Union:",Union,"before:",round(y_plot+h_long),"after:",gt_bot)
+		print("images:",im,"IOU:",max_IOU,"gt_l:",gt_left,"gt_r:",gt_right,"gt_t:",gt_top,"gt_b:",gt_bot,"l:",left,"r:",right,"t:",top,"b:",bot,"C:",area,"Union:",Union,"before:",round(y_plot+h_long),"after:",gt_bot)
 		CC.count +=  max_IOU		
 	SFILE.close()
 	if not save: return imgcv
