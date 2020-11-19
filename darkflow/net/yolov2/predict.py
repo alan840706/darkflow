@@ -33,6 +33,7 @@ def postprocess(self, CC,net_out, im, save = True):
 	# meta
 	meta = self.meta
 	threshold = meta['thresh']
+	print(threshold)
 	colors = meta['colors']
 	labels = meta['labels']
 	answer_path ="content/result/" 
