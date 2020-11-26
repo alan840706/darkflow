@@ -99,6 +99,7 @@ def postprocess(self, CC,net_out, im, save = True):
 			cv2.rectangle(imgcv,
 				(left, top), (right, bot),
 				colors[max_indx], thick)
+			print(mess)
 			cv2.putText(imgcv, mess, (left, top - 12),
 				0, 1e-3 * h, colors[max_indx],thick//3)
 			
