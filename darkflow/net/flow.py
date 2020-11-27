@@ -136,8 +136,7 @@ def predict(self):
         feed_dict = {self.inp : np.concatenate(inp_feed, 0)}    
         self.say('Forwarding {} inputs ...'.format(len(inp_feed)))
         start = time.time()
-        print("1: ",self.out)
-        print("2: ",feed_dict)
+        print("1: ",inp_feed)
         out = self.sess.run(self.out, feed_dict)
         #import cv2
 
