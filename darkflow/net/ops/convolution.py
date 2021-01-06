@@ -25,7 +25,7 @@ class reorg(BaseOp):
     def forward(self):
         inp = self.inp.out
         s = self.lay.stride
-        reshape_tensor = keras.layers.Reshape((inp.shape[1] // s, s, inp.shape[2] // s, s, inp.shape[3]))(inp)
+        #reshape_tensor = tf.reshape(inp, [h // s, s, w // s, s, c])
         self.out = tf.extract_image_patches(
             inp, [1,s,s,1], [1,s,s,1], [1,1,1,1], 'VALID')
 
