@@ -2,7 +2,6 @@ import tensorflow.contrib.slim as slim
 from .baseop import BaseOp
 import tensorflow as tf
 import numpy as np
-import keras
 
 class reorg(BaseOp):
     def _forward(self):
