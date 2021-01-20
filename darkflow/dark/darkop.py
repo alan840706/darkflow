@@ -1,6 +1,7 @@
 from .layer import Layer
 from .convolution import *
 from .connected import *
+from .rnn import *
 
 class avgpool_layer(Layer):
     pass
