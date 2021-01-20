@@ -31,6 +31,12 @@ def parser(model):
 					w = layer['width']
 					c = layer['channels']
 					meta['net'] = layer
+				elif layer['type'] == '[rnn_net]':
+					print("YI!")
+					h = layer['height']
+					w = layer['width']
+					c = layer['channels']
+					meta['net'] = layer
 				else:
 					if layer['type'] == '[crop]':
 						h = layer['crop_height']
