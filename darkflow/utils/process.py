@@ -26,11 +26,14 @@ def parser(model):
 		line = line.split('#')[0]
 		if '[' in line:
 			if layer != dict(): 
-				if layer['type'] == '[net]': 
-					h = layer['height']
-					w = layer['width']
-					c = layer['channels']
-					meta['net'] = layer
+				if layer['type'] == '[net]':
+					try:
+						h = layer['height']
+						w = layer['width']
+						c = layer['channels']
+						meta['net'] = layer
+					except:
+						print("i am rnn")
 				elif layer['type'] == '[rnn_net]':
 					print("YI!")
 					h = layer['height']
