@@ -34,6 +34,10 @@ def parser(model):
 						meta['net'] = layer
 					except:
 						print("i am rnn")
+						h = 0
+						w = 0
+						c = 0
+						meta['net'] = layer
 				else:
 					if layer['type'] == '[crop]':
 						h = layer['crop_height']
