@@ -65,6 +65,7 @@ class weights_loader(loader):
             self.vals.append(new)
 
             if new is None: continue
+            print(new.type)
             order = self._W_ORDER[new.type]
             for par in order:
                 if par not in new.wshape: continue
