@@ -1,4 +1,7 @@
-class r(Layer):
+from .layer import Layer
+import numpy as np
+
+class rnn_layer(Layer):
     def setup(self, ksize, c, n, stride, 
               pad, batch_norm, activation,groups):
         self.batch_norm = bool(batch_norm)
