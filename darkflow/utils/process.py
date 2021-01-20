@@ -322,6 +322,14 @@ def cfg_yielder(model, binary):
 			c = c * (stride ** 2)
 			l = w * h * c
 		#-----------------------------------------------------
+		elif d['type'] == '[rnn]':
+			batch_norm = d.get('batch_normalize', 0)
+			out = d['output']
+			hidden = d['hidden']
+			activation = d.get('activation', 'logistic')
+			yield ['rnn', i, d['output'], activation]
+			if activation != 'linear': yield [activation, i]
+		#-----------------------------------------------------
 		else:
 			exit('Layer {} not implemented'.format(d['type']))
 
