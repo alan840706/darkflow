@@ -2,8 +2,9 @@ from .layer import Layer
 import numpy as np
 
 class rnn_layer(Layer):
-    def setup(self, input_size,output_size, activation):
+    def setup(self, input_size,output_size, activation,batch_norm):
         self.activation = activation
+        self.batch_norm = batch_norm
         self.inp = input_size
         self.out = output_size
         self.wshape = {
