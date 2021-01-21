@@ -47,7 +47,7 @@ class weights_loader(loader):
         ],
         'connected': ['biases', 'weights'],
         'local': ['biases', 'kernels'],
-        'rnn': ['biases_1','gamma_1','moving_mean_1','moving_variance_1','kernel_1','biases_2','gamma_2','moving_mean_2','moving_variance_2','kernel_2','biases_3','gamma_3','moving_mean_3','moving_variance_3','kernel_3']
+        'rnn': ['biases_1','weights_1','gamma_1','moving_mean_1','moving_variance_1','biases_2','weights_2','gamma_2','moving_mean_2','moving_variance_2','biases_3','weights_3','gamma_3','moving_mean_3','moving_variance_3']
     })
 
     def load(self, path, src_layers):
