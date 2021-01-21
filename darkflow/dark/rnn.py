@@ -2,7 +2,7 @@ from .layer import Layer
 import numpy as np
 
 class rnn_layer(Layer):
-    def setup(self, input_size, 
+    def setup(self, 
               output_size, activation):
         self.activation = activation
         self.inp = input_size
@@ -11,6 +11,18 @@ class rnn_layer(Layer):
             'biases': [self.out],
             'weights': [self.inp, self.out]
         }
+        if self.batch_norm:
+            self.wshape.update({
+                'moving_variance'  : [n], 
+                'moving_mean': [n], 
+                'gamma' : [n]
+            })
+            self.h['is_training'] = {
+                'feed': True,
+                'dfault': False,
+                'shape': ()
+            }
+
 
     def finalize(self, transpose):
         weights = self.w['weights']
