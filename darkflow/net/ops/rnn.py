@@ -1,18 +1,10 @@
 class rnn(BaseOp):
     def forward(self):
-        pad = [[self.lay.pad, self.lay.pad]] * 2;
-        #print([[0, 0]] + pad + [[0, 0]])
-        #temp = tf.pad(self.inp.out, [[0, 0]] + pad + [[0, 0]])
-        temp = tf.space_to_batch_nd(self.inp.out, [1,1], pad, name=None)  
-        if self.lay.groups == 1:
-            temp = tf.nn.conv2d(temp, self.lay.w['kernel'], padding = 'VALID', 
-                name = self.scope, strides = [1] + [self.lay.stride] * 2 + [1])
-        else:
-            temp = tf.nn.depthwise_conv2d(temp, self.lay.w['kernel'] ,padding = 'VALID',
-                strides = [1] + [self.lay.stride] * 2 + [1])
-        if self.lay.batch_norm: 
-            temp = self.batchnorm(self.lay, temp)
-        self.out = tf.nn.bias_add(temp, self.lay.w['biases'])
+		self.out = tf.nn.xw_plus_b(
+			self.inp.out,
+			self.lay.w['weights'], 
+			self.lay.w['biases'], 
+			name = self.scope)
 
     def batchnorm(self, layer, inp):
         if not self.var:
