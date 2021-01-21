@@ -330,9 +330,9 @@ def cfg_yielder(model, binary):
 			out = d['output']
 			hidden = d['hidden']
 			activation = d.get('activation', 'logistic')
-			yield ['rnn', i,d['output'], activation]
+			yield ['rnn', i, l, d['output'], activation]
 			if activation != 'linear': yield [activation, i]
-			l=ipt
+			l = d['output']
 		#-----------------------------------------------------
 		else:
 			exit('Layer {} not implemented'.format(d['type']))
