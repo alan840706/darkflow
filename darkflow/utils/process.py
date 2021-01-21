@@ -34,6 +34,7 @@ def parser(model):
 						meta['net'] = layer
 					except:
 						print("i am rnn")
+						ipt=layer['inputs']
 						h = 0
 						w = 0
 						c = 0
@@ -325,7 +326,7 @@ def cfg_yielder(model, binary):
 			out = d['output']
 			hidden = d['hidden']
 			activation = d.get('activation', 'logistic')
-			yield ['rnn', i, d['output'], activation]
+			yield ['rnn', i, ipt,d['output'], activation]
 			if activation != 'linear': yield [activation, i]
 		#-----------------------------------------------------
 		else:
