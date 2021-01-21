@@ -67,5 +67,7 @@ class Layer(object):
 
     def recollect(self, w): self.w = w
     def present(self): self.presenter = self
-    def setup(self, *args): pass
+    def setup(self, *args): 
+        print(args)
+        pass
     def finalize(self): pass 
