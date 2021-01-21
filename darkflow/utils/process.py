@@ -18,7 +18,7 @@ def parser(model):
 		lines = f.readlines()
 
 	lines = [line.decode() for line in lines]	
-	
+	ipt=0
 	meta = dict(); layers = list() # will contains layers' info
 	h, w, c = [int()] * 3; layer = dict()
 	for line in lines:
@@ -33,7 +33,7 @@ def parser(model):
 						c = layer['channels']
 						meta['net'] = layer
 					except:
-						print("i am rnn")
+						print("I am rnn !")
 						ipt=layer['inputs']
 						h = 0
 						w = 0
@@ -64,7 +64,11 @@ def parser(model):
 		anchors = [float(x.strip()) for x in splits]
 		meta['anchors'] = anchors
 	meta['model'] = model # path to cfg, not model name
+
 	meta['inp_size'] = [h, w, c]
+        
+	meta['ipt'] = ipt
+	
 	return layers, meta
 
 def cfg_yielder(model, binary):
@@ -73,7 +77,7 @@ def cfg_yielder(model, binary):
 	"""
 	layers, meta = parser(model); yield meta;
 	h, w, c = meta['inp_size']; l = w * h * c
-
+	ipt = meta['ipt']
 	# Start yielding
 	flat = False # flag for 1st dense layer
 	conv = '.conv.' in model
