@@ -1,10 +1,10 @@
 class rnn(BaseOp):
     def forward(self):
-		self.out = tf.nn.xw_plus_b(
-			self.inp.out,
-			self.lay.w['weights'], 
-			self.lay.w['biases'], 
-			name = self.scope)
+        self.out = tf.nn.xw_plus_b(
+            self.inp.out,
+            self.lay.w['weights'], 
+            self.lay.w['biases'], 
+            name = self.scope)
 
     def batchnorm(self, layer, inp):
         if not self.var:
