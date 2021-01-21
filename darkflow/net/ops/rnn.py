@@ -29,3 +29,11 @@ class rnn(BaseOp):
                 'param_initializers': layer.w
                 })
             return slim.batch_norm(inp, **args)
+        
+    def speak(self):
+        l = self.lay
+        args = [l.ksize] * 2 + [l.pad] + [l.stride]
+        args += [l.batch_norm * '+bnorm']
+        args += [l.activation]
+        msg = 'conv {}x{}p{}_{}  {}  {}'.format(*args)
+        return msg
