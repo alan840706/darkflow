@@ -103,6 +103,7 @@ class TFNet(object):
 		verbalise = self.FLAGS.verbalise
 
 		# Placeholders
+		print(self.meta['inp_size'])
 		inp_size = [None] + self.meta['inp_size']
 		self.inp = tf.placeholder(tf.float32, inp_size, 'input')
 		self.feed = dict() # other placeholders
