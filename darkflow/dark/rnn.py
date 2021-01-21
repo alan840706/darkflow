@@ -14,6 +14,7 @@ class rnn_layer(Layer):
 
     def finalize(self, transpose):
         weights = self.w['weights']
+        weights = self.w['weights']
         if weights is None: return
         shp = self.wshape['weights']
         if not transpose:
