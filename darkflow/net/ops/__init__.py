@@ -20,7 +20,8 @@ op_types = {
 	'route': route,
 	'reorg': reorg,
 	'conv-extract': conv_extract,
-	'extract': extract
+	'extract': extract,
+	'rnn': rnn
 }
 
 def op_create(*args):
