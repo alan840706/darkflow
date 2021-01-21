@@ -1,3 +1,8 @@
+import tensorflow.contrib.slim as slim
+from .baseop import BaseOp
+import tensorflow as tf
+import numpy as np
+
 class rnn(BaseOp):
     def forward(self):
         self.out = tf.nn.xw_plus_b(
