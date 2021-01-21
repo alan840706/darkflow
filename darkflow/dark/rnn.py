@@ -2,8 +2,7 @@ from .layer import Layer
 import numpy as np
 
 class rnn_layer(Layer):
-    def setup(self, 
-              output_size, activation):
+    def setup(self, input_size,output_size, activation):
         self.activation = activation
         self.inp = input_size
         self.out = output_size
