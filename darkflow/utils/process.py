@@ -332,6 +332,7 @@ def cfg_yielder(model, binary):
 			activation = d.get('activation', 'logistic')
 			yield ['rnn', i, ipt, d['output'], activation]
 			if activation != 'linear': yield [activation, i]
+			ipt = d['output']
 			l = d['output']
 		#-----------------------------------------------------
 		else:
