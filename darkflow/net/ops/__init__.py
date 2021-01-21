@@ -27,5 +27,4 @@ op_types = {
 
 def op_create(*args):
 	layer_type = list(args)[0].type
-	print(args)
 	return op_types[layer_type](*args)
