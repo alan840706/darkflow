@@ -28,9 +28,9 @@ class rnn(BaseOp):
 
     def batchnorm(self, layer, inp):
         if not self.var:
-            temp = (inp - layer.w['moving_mean'])
-            temp /= (np.sqrt(layer.w['moving_variance']) + 1e-5)
-            temp *= layer.w['gamma']
+            temp = (inp - layer.w['moving_mean_1'])
+            temp /= (np.sqrt(layer.w['moving_variance_1']) + 1e-5)
+            temp *= layer.w['gamma_1']
             return temp
         else:
             args = dict({
