@@ -5,10 +5,11 @@ import numpy as np
 
 class rnn(BaseOp):
     def forward(self):
+        print(inp.out)
         self.out = tf.nn.xw_plus_b(
             self.inp.out,
-            self.lay.w['weights'], 
-            self.lay.w['biases'], 
+            self.lay.w['weights_1'], 
+            self.lay.w['biases_1'], 
             name = self.scope)
 
     def batchnorm(self, layer, inp):
