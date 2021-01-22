@@ -5,7 +5,6 @@ import numpy as np
 
 class rnn(BaseOp):
     def forward(self):
-        print(self.inp.out)
         self.out = tf.nn.xw_plus_b(
             self.inp.out,
             self.lay.w['weights'], 
