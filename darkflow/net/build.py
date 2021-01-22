@@ -106,7 +106,8 @@ class TFNet(object):
 		## RNN : h=0,w=0,c=0
 		if (self.meta['inp_size'][0] + self.meta['inp_size'][1] + self.meta['inp_size'][2] == 0):
 			inp_size = [None] + self.meta['ipt']
-		inp_size = [None] + self.meta['inp_size']
+		else:
+			inp_size = [None] + self.meta['inp_size']
 		self.inp = tf.placeholder(tf.float32, inp_size, 'input')
 		self.feed = dict() # other placeholders
 
