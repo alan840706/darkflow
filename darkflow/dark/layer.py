@@ -12,7 +12,6 @@ class Layer(object):
         self.h = dict() # placeholders
         self.wshape = dict() # weight shape
         self.wsize = dict() # weight size
-        print(args[2:])
         self.setup(*args[2:]) # set attr up
         self.present()
         for var in self.wshape:
