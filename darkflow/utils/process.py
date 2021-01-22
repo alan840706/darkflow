@@ -67,7 +67,7 @@ def parser(model):
 
 	meta['inp_size'] = [h, w, c]
         
-	meta['ipt'] = ipt
+	meta['ipt'] = [ipt]
 	
 	return layers, meta
 
