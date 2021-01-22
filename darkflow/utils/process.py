@@ -77,8 +77,7 @@ def cfg_yielder(model, binary):
 	"""
 	layers, meta = parser(model); yield meta;
 	h, w, c = meta['inp_size']; l = w * h * c
-	ipt = meta['ipt']
-	print("IPT: ",ipt)
+	ipt = meta['ipt'][0]
 	# Start yielding
 	flat = False # flag for 1st dense layer
 	conv = '.conv.' in model
