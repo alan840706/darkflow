@@ -45,8 +45,8 @@ class rnn(BaseOp):
             return slim.batch_norm(inp, **args)
         
     def speak(self):
-		layer = self.lay
-		args = [layer.inp, layer.out]
-		args += [layer.activation]
-		msg = 'full {} x {}  {}'
-		return msg.format(*args)
+        layer = self.lay
+        args = [layer.inp, layer.out]
+        args += [layer.activation]
+        msg = 'full {} x {}  {}'
+        return msg.format(*args)
