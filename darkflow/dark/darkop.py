@@ -52,7 +52,7 @@ darkops = {
     'reorg': reorg_layer,
     'conv-select': conv_select_layer,
     'conv-extract': conv_extract_layer,
-    'extract': extract_layer
+    'extract': extract_layer,
 }
 
 def create_darkop(ltype, num, *args):
